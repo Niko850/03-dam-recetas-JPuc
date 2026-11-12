@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/receta.dart';
 import '../services/recipe_service.dart';
 import '../widgets/receta_card.dart';
+import 'detalle_receta_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('RecetasApp'),
-        backgroundColor: const Color.fromARGB(255, 80, 23, 3),
+        backgroundColor: const Color.fromARGB(255, 187, 99, 67),
       ),
       body: FutureBuilder<List<Receta>>(
         future: _futureRecetas,
@@ -56,6 +57,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
               return RecetaCard(
                 receta: recetas[index],
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetalleRecetaScreen(
+                        receta: recetas[index],
+                      ),
+                    ),
+                  );
+                },
               );
             },
           );
